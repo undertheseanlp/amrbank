@@ -1,39 +1,208 @@
 1. Đang làm rõ tố cáo về bằng cấp của Bí thư Tỉnh uỷ Hải Dương
 
+(v1 / làm_rõ-01
+      :ARG1 (v2 / tố_cáo-01
+            :ARG1 (v3 / bằng_cấp
+                  :mod (v4 / thuộc_tổ_chức-91
+                        :ARG1 (v6 / Tỉnh_Ủy_Hải_Dương :wiki "Tỉnh_ủy_Hải_Dương"))
+                        :ARG2 (v5 / thư_ký ))))
+
 2. Hỏa hoạn tại Hà Nội, giải cứu 5 người, 2 chị em tử vong
+
+(v4 / cứu-01
+    :ARG0 (v1 / fire-02
+        :location (v2 / city
+            :name (v3 / name
+                :op1 "Hanoi")
+            :wiki "Hanoi"))
+    :ARG1 (v6 / and
+        :op1 (v5 / person
+            :quant 5)
+        :op2 (v9 / die-01
+            :ARG1 (v7 / have-rel-role-91
+                :ARG2 (v8 / sister))
+            :quant 2)))
 
 3. Cận cảnh những cánh rừng nguyên liệu bị bão số 10 phá nát
 
+
 4. Viện KSND khẳng định không khởi tố vụ bà mẹ bị hiếp dâm 2 lần
+
+(v5 / khởi_tố-01 :polarity -
+      :ARG1 (v6 / hiếp_dâm-01 :quant 2
+            :ARG0 (v7 / person
+                  :ARG0-of (v8 / have-rel-role-91
+                        :ARG2 (v9 / bà_mẹ))))
+      :ARG1 (v4 / khẳng_định-01
+            :ARG0 (v3 / procuracy
+                  :poss (v2 / organization
+                        :mod (v1 / Viện_KSND)))))
 
 5. Mỹ mở rộng lệnh cấm nhập cảnh gồm Bắc Hàn
 
+(v4 / lệnh_cấm-01
+      :ARG0 (v1 / country :wiki "Hoa_Kỳ" :name (v2 / name :op1 "Mĩ"))
+      :ARG1 (v5 / country :wiki "Cộng_hòa_Dân_chủ_Nhân_dân_Triều_Tiên" :name (v6 / name :op1 "North" :op2 "Bắc_Hàn"))
+      :ARG1-of (v3 / mở_rộng-01))
+
 6. Bộ Ngoại giao lên tiếng vụ cảnh sát biển Philippines bắn chết 2 ngư dân Việt Nam
+
+(v3 / lên tiếng-01
+      :ARG0 (v1 / Bộ Ngoại giao :wiki "Bộ_Ngoại_giao_(Việt_Nam)"))
+      :ARG1 (v5 / bắn chết-01
+            :ARG0 (v4 / cảnh sát biển)
+            :ARG1 (v8 / ngư dân :quant 2
+                  :mod (v6 / country :wiki "Việt Nam" :name (v7 / name :op1 "Việt Nam")))))
 
 7. Arsenal – West Brom: Không được phép sa chân 
 
+(v3 / được_phép-01 :polarity -
+      :ARG0 (v3 / country :wiki "Arsenal" :name (v4 / name :op1 "Arsenal"))
+      :ARG0 (v1 / country :wiki "West_Bromwich_Albion_F.C." :name (v2 / name :op1 "West_Brom")))
+      :ARG1-of (v4 /sa_chân-01))
+
 8. Trung tướng Nga tử trận tại Syria do trúng pháo kích của IS
+
+(v4 / tử_trận-01
+      :ARG0 (v1 / Trung_tướng
+            :mod (v2 / country :wiki "Nga" :name (v3 / name :op1 "Nga")))
+      :ARG1 (v7 / pháo_kích-01
+            :mod (r / group :wiki "IS" :name (n / name :op1 "IS")))
+      :location (v5 / country :wiki "Syria" :name (v6 / name :op1 "Syria")))
 
 9. Con rể ông Donald Trump lặp lại sai lầm của bà Clinton?
 
+(v4 / lặp_lại-01
+      :ARG0 (v1 / person :wiki "Donald_Trump" :name (v2 / name :op1 "Donald" :op2 "Trump" :op3 "Con_rể"))
+      :ARG1 (v7 / sai_lầm-02
+            :ARG0 (v5 / person :wiki "Clinton" :name (v6 / name :op1 "Clinton"))
+            :ARG0 v3)
+
 10. Hà Nội: Trường mầm non đang xây dựng bị sập
+
+(v5 / Sập-01
+    :ARG1 (v4 / xây_dựng-01
+        :ARG0 (v3 / trường_mầm_non
+             :location (v1 / city :wiki "Hà_Nội" :name (v2 / name :op1 "Hà_Nội")))))
 
 11. Thua trận phút chót, HAGL lên án trọng tài
 
 12. Cháy tại cửa hàng xăng dầu, 4 người bị bỏng nặng
 
+(m / multi-sentence
+      :snt1 (v1 / chay-01
+            :ARG1 (v2 / cửa_hàng_xăng_dầu))
+      :snt2 (v3 / người :quant 4
+            :ARG0-of (v5 / bỏng-01
+                  :mod (v4 / nặng))))
+
 13. 12 đại dự án thua lỗ ngàn tỷ đồng bây giờ ra sao?
+
+(v3 / thua_lỗ-02 :frequency 1000000000
+      :ARG0 (v2 / dự_án :quant 12
+            :mod (v1 / đại))
+      :time (v4 / bây_giờ))
 
 14. Chiều nay Hà Nội có thể mưa lớn giờ tan tầm
 
 15. Phó Thủ tướng: "Không trách nhiều chuyên gia nói 63 nền kinh tế 63 tỉnh thành"
 
+(v6 / trách-01
+    :polarity -
+    :ARG0 (v5 / ``)
+    :ARG1 (v10 / nói-01
+        :ARG0 (v8 / person
+            :ARG1-of (v9 / chuyên_gia-01)
+            :quant (v7 / nhiều))
+        :ARG1 (v11 / kinh_tế
+            :quant 63
+            :location (v12 / tỉnh_thành
+                :quant 63)))
+    :ARG1 (v13 / '')
+    :ARG1 (v3 / have-org-role-91
+        :ARG2 (v4 / thủ_tướng))
+    :ARG1 (v2 / đứng_đầu)
+    :ARG0 (v1 / phó))
+
 16. Nhiều vấn đề cần làm rõ trong đại án OceanBank
+
+(v3 / cần-01
+    :ARG0 (v2 / vấn_đề-02
+        :quant (v1 / nhiều))
+    :ARG1 (v4 / làm_rõ-01
+        :ARG2 (v5 / đại_án-03
+            :mod "OceanBank")
+        :ARG0 v2))
 
 17. Maya - cô người yêu cũ quyền lực nhất showbiz Việt?
 
+(mu / multi-sentence
+    :snt1 (v6 / người_yêu
+        :mod (v5 / cũ)
+        :mod (v4 / quyền_lực
+            :quant (v3 / nhất))
+        :mod (v1 / person
+            :name (v2 / name
+                :op1 "Maya")
+            :wiki "Maya")
+        :mod (v7 / showbiz)
+        :location (v8 / country
+            :name (v9 / name
+                :op1 "Vietnam")
+            :wiki "Vietnam"))
+    :snt2 interrogative)
+
 18. Thí sinh bị dọa 'chặt tay' vì đóng giả NSND Hồng Vân
+
+(v2 / dọa-01
+    :ARG1 (v1 / thí_sinh)
+    :ARG1 (v4 / tay
+        :part-of (v3 / `)
+        :ARG1-of (v5 / cause-01
+            :ARG0 (v6 / đóng_giả-01
+                :ARG1 (v9 / person
+                    :name (v10 / name
+                        :op1 "Vân"
+                        :op2 "Hồng")
+                    :wiki -
+                    :poss (v7 / country))))))
 
 19. HLV Vũ Hồng Việt chỉ ra "tử huyệt" của U16 Việt Nam
 
+(v1 / huấn_luyện_viên-01
+    :ARG1 (v4 / chỉ_ra-02
+        :ARG0 (v2 / person
+            :name (v3 / name
+                :op1 "Vũ"
+                :op2 "Hồng"
+                :op3 "Việt")
+            :wiki "Vu_Hong_Viet")
+        :ARG1 (v7 / điểm
+            :mod (v6 / chết-01)
+            :mod (v10 / country
+                :name (v11 / name
+                    :op1 "Vietnam")
+                :wiki "Vietnam"
+                :mod (v9 / u16)
+                :mod (v8 / ''))
+            :mod (v5 / ``))))
+
 20. Điểm tin bóng đá sáng ngày 25/9: Cavani quyết không nhường penalty cho Neymar
+
+(v2 / điểm_tin-01
+    :ARG0 (v1 / bóng_đá)
+    :ARG1 (v5 / quyết_định-01
+        :ARG0 (v3 / person
+            :name (v4 / name
+                :op1 "Cavani")
+            :wiki "Cavani")
+        :ARG1 (v6 / nhường-01
+            :polarity -
+            :ARG1 (v7 / penalty-01)
+            :ARG2 (v8 / person
+                :name (v9 / name
+                    :op1 "Neymar")
+                :wiki "Neymar")
+            :ARG0 v3)
+        :quant 25
+        :ARG0 v1))
