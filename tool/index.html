@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+  <meta charset="UTF-8">
+  <title>AMR Bank</title>
+  <script
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h1>AMR Bank: Toy Version 0.0.1</h1>
+  <hr>
+  <div class="row">
+    <div class="col-xs-6">
+      <p class="text-center">
+        <button class="btn btn-info" id="updateText">Update</button>
+      </p>
+      <textarea class="form-control" rows="20">
+(v5 / help-01
+    :ARG0 (v2 / version
+        :mod (v1 / new)
+        :mod (v4 / bill
+            :mod (v3 / health-care)))
+    :ARG1 (v8 / and
+        :op1 (v6 / state
+            :name (v7 / name
+                :op1 "Alaska")
+            :wiki "Alaska")
+        :op2 (v9 / state
+            :name (v10 / name
+                :op1 "Maine")
+            :wiki "Maine")
+        :op3 (v11 / home
+            :poss (v13 / senator
+                :mod (v12 / holdout)
+                :quant 2))))
+      </textarea>
+    </div>
+    <div class="col-xs-6">
+      <div id="mynetwork" style="height: 600px"></div>
+    </div>
+  </div>
+</div>
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
+<link href="http://visjs.org/dist/vis-network.min.css" rel="stylesheet"
+      type="text/css"/>
+<script src="network.js"></script>
+<script src="syntax.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
