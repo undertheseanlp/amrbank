@@ -137,7 +137,16 @@ function parseConcepts(text, top) {
     return concepts;
 }
 
+function normalize(text) {
+    var text = $.trim(text);
+    text = text.replace(/(?:\r\n|\r|\n)/g, " ");
+    text = text.replace(/  +/g, ' ');
+    return text;
+}
+
+
 function parseNode(text) {
+    text = normalize(text);
     var next = text.slice(1, -1);
     var i = text.search("/");
     var variable = $.trim(next.slice(0, i - 1));

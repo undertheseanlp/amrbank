@@ -1,37 +1,30 @@
-//TODO: add parameter to url
-
-function normalize(text) {
-    var text = $.trim(text);
-    text = text.replace(/(?:\r\n|\r|\n)/g, " ");
-    text = text.replace(/  +/g, ' ');
-    return text;
+function encode(text){
+    return window.btoa(encodeURIComponent(text));
 }
 
-function addParameterToURL(param){
-    _url = location.href;
-    _url += (_url.split('?')[1] ? '&':'?') + param;
-    return _url;
+function decode(s){
+    return decodeURIComponent(atob(s))
 }
-
-addParameterToURL("hihi");
 
 $("#updateText").click(function () {
-    var text = normalize($("textarea").val());
-    console.log(text);
-    var result = parseNode(text);
-    draw(result);
+    var text = $("textarea").val();
+    url = new URL(window.location.href);
+    window.location.href = url.origin + url.pathname + "?id=" + encode(text);
 });
 
-// $(document).ready(function(){
-//     try {
-//         var url_string = window.location.href;
-//         var url = new URL(url_string);
-//         encodedText = url.searchParams.get("text");
-//         text = atob(encodedText);
-//         $("textarea").text(text);
-//         console.log(text);
-//     } catch(e){
-//         console.log(e);
-//     }
-//
-// });
+$(document).ready(function(){
+    try {
+        var url_string = window.location.href;
+        var url = new URL(url_string);
+        id = url.searchParams.get("id");
+        if(id){
+            text = decode(id);
+            $("textarea").text(text);
+            var amr = parseNode(text);
+            draw(amr);
+        }
+    } catch(e){
+        console.log(e);
+    }
+
+});
