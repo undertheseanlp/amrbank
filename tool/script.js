@@ -32,3 +32,6 @@ $(document).ready(function(){
     }
 
 });
+
+var amr = $("#amr").val();
+var amrTree = parseNode(amr);

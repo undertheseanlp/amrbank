@@ -47,30 +47,30 @@ function Graph() {
     }
 }
 
-function addConcepts(graph, concepts) {
-    for (var i = 0; i < concepts.length; i++) {
-        concept = concepts[i];
-        label = concept["concept"];
+function addRelations(graph, relations) {
+    for (var i = 0; i < relations.length; i++) {
+        relation = relations[i];
+        label = relation["role"];
         graph.addEdge({
-            "id": concept["top"]
+            "id": relation["top"]
         }, {
-            "id": concept["node"]["variable"],
-            "label": concept["node"]["type"]
-        }, label)
-        graph = addConcepts(graph, concept["node"]["concepts"]);
+            "id": relation["node"]["variable"],
+            "label": relation["node"]["type"]
+        }, label);
+        graph = addRelations(graph, relation["node"]["relations"]);
     }
     return graph;
 }
 
-function sentenceToGraph(tree) {
-    console.log(tree);
+function convertAMRToGraph(amr) {
+    console.log(amr);
     var graph = new Graph();
     var top = {
-        "id": tree["variable"],
-        "label": tree["type"]
+        "id": amr["variable"],
+        "label": amr["type"]
     };
     graph.addEdge(top, top, "TOP");
-    graph = addConcepts(graph, tree.concepts);
+    graph = addRelations(graph, amr.relations);
     return graph.getData();
 }
 
@@ -99,7 +99,7 @@ function destroy() {
     }
 }
 
-function draw(sentence) {
+function draw(amr) {
     destroy();
     // randomly create some nodes and edges
 
@@ -117,7 +117,7 @@ function draw(sentence) {
             arrows: {to: true}
         }
     };
-    var data = sentenceToGraph(sentence);
+    var data = convertAMRToGraph(amr);
     // var data = getData();
     network = new vis.Network(container, data, options);
 

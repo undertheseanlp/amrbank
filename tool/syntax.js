@@ -8,10 +8,10 @@ function makeid() {
     return text;
 }
 
-function parseConcept(text){
+function parseRole(text){
     var i = text.search(" ");
-    var concept = text.slice(0, i);
-    return concept;
+    var role = text.slice(0, i);
+    return role;
 }
 
 function parseContent(text){
@@ -20,15 +20,15 @@ function parseContent(text){
     return content;
 }
 
-function parseConcepts(text, top) {
+function parseRelations(text, top) {
     /***
      * text
-     *  :concept1 (content1) :concept2 content2 :concept3 content4
+     *  :role1 (content1) :role2 content2 :role3 content4
      */
     if (text.length == 0) {
         return [];
     }
-    var concept = parseConcept(text);
+    var role = parseRole(text);
     var next = parseContent(text);
     // 4 cases of next: node + concepts, string, digit, node
     // in case next is node
@@ -52,21 +52,23 @@ function parseConcepts(text, top) {
             i += 1;
         }
         var node = next.slice(0, i);
-        var concepts = [{
-            "concept": concept,
+        var relations = [{
+            "role": role,
+            "class": role,
             "top": top,
             "node": parseNode(node)
         }];
     }
     // in case next is polarity
     else if (next[0] == "-") {
-        var concepts = [{
-            "concept": concept,
+        var relations = [{
+            "role": role,
             "top": top,
+            "class": "polarity",
             "node": {
                 "type": "-",
                 "variable": makeid(),
-                "concepts": []
+                "relations": []
             }
         }];
         i = 1;
@@ -76,36 +78,38 @@ function parseConcepts(text, top) {
         var i = next.search(" ");
         if (i != -1) {
             var content = next.slice(1, i - 1);
-            var concepts = [{
-                "concept": concept,
+            var relations = [{
+                "role": role,
+                "class": "string",
                 "top": top,
                 "node": {
                     "type": content,
                     "variable": makeid(),
-                    "concepts": []
+                    "relations": []
                 }
             }];
             next = $.trim(next.slice(i));
-            concepts = concepts.concat(parseConcepts(next, top));
-            return concepts;
+            relations = relations.concat(parseRelations(next, top));
+            return relations;
         } else {
             var content = next.slice(1, -1);
-            var concepts = [{
-                "concept": concept,
+            var relations = [{
+                "role": role,
+                "class": "string",
                 "top": top,
                 "node": {
                     "type": content,
                     "variable": makeid(),
-                    "concepts": []
+                    "relations": []
                 }
             }];
-            return concepts;
+            return relations;
         }
     }
     // in case next is node_id or number
     else {
         var i = next.search(" ");
-        var variable, type, content;
+        var variable, type, content, class_;
         if(i != -1){
             content = next.slice(0, i);
         } else {
@@ -115,26 +119,29 @@ function parseConcepts(text, top) {
         var isFloat = !isNaN(parseFloat(content));
         if(isFloat){
             // next is number
+            class_ = "number";
             type = parseFloat(content);
             variable = makeid();
         } else {
             // next is node_id
+            class_ = "number";
             type = "";
             variable = content;
         }
-        var concepts = [{
-            "concept": concept,
+        var relations = [{
+            "role": role,
+            "class": class_,
             "top": top,
             "node": {
                 "type": type,
                 "variable": variable,
-                "concepts": []
+                "relations": []
             }
         }];
     }
     next = $.trim(next.slice(i));
-    concepts = concepts.concat(parseConcepts(next, top));
-    return concepts;
+    relations = relations.concat(parseRelations(next, top));
+    return relations;
 }
 
 function normalize(text) {
@@ -152,24 +159,24 @@ function parseNode(text) {
     var variable = $.trim(next.slice(0, i - 1));
     next = $.trim(next.slice(i));
     i = next.search(" ");
+    var amr;
     if (i != -1) {
         var type = $.trim(next.slice(0, i));
         next = $.trim(next.slice(i));
-        var concepts = next;
-        node = {
+        amr = {
             "type": type,
             "variable": variable,
-            "concepts": parseConcepts(concepts, variable)
+            "relations": parseRelations(next, variable)
         }
     } else {
         var type = $.trim(next);
-        node = {
+        amr = {
             "type": type,
             "variable": variable,
-            "concepts": []
+            "relations": []
         }
     }
-    return node;
+    return amr;
 }
 
 
