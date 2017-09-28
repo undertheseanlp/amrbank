@@ -1,8 +1,8 @@
-function encode(text){
+function encode(text) {
     return window.btoa(encodeURIComponent(text));
 }
 
-function decode(s){
+function decode(s) {
     return decodeURIComponent(atob(s))
 }
 
@@ -12,26 +12,24 @@ $("#updateText").click(function () {
     window.location.href = url.origin + url.pathname + "?id=" + encode(text);
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
     try {
         var url_string = window.location.href;
         var url = new URL(url_string);
         id = url.searchParams.get("id");
-        if(id){
+        if (id) {
             var data = decode(id);
             data = data.split("||||");
             var text = data[0];
             var amr = data[1];
             $("#text").text(text);
             $("#amr").text(amr);
+            var amr = $("#amr").val();
             amr = parseNode(amr);
+            makeAMRListView(amr);
             draw(amr);
         }
-    } catch(e){
+    } catch (e) {
         console.log(e);
     }
-
 });
-
-var amr = $("#amr").val();
-var amrTree = parseNode(amr);

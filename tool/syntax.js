@@ -54,7 +54,6 @@ function parseRelations(text, top) {
         var node = next.slice(0, i);
         var relations = [{
             "role": role,
-            "class": role,
             "top": top,
             "node": parseNode(node)
         }];
@@ -64,9 +63,9 @@ function parseRelations(text, top) {
         var relations = [{
             "role": role,
             "top": top,
-            "class": "polarity",
             "node": {
                 "type": "-",
+                "class": "polarity",
                 "variable": makeid(),
                 "relations": []
             }
@@ -80,9 +79,9 @@ function parseRelations(text, top) {
             var content = next.slice(1, i - 1);
             var relations = [{
                 "role": role,
-                "class": "string",
                 "top": top,
                 "node": {
+                    "class": "string",
                     "type": content,
                     "variable": makeid(),
                     "relations": []
@@ -95,9 +94,9 @@ function parseRelations(text, top) {
             var content = next.slice(1, -1);
             var relations = [{
                 "role": role,
-                "class": "string",
                 "top": top,
                 "node": {
+                    "class": "string",
                     "type": content,
                     "variable": makeid(),
                     "relations": []
@@ -124,15 +123,15 @@ function parseRelations(text, top) {
             variable = makeid();
         } else {
             // next is node_id
-            class_ = "number";
+            class_ = "node_id";
             type = "";
             variable = content;
         }
         var relations = [{
             "role": role,
-            "class": class_,
             "top": top,
             "node": {
+                "class": class_,
                 "type": type,
                 "variable": variable,
                 "relations": []
