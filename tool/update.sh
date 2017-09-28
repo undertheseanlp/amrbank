@@ -1,2 +1,2 @@
-git pull origin tool
+git pull origin beta
 python -m SimpleHTTPSever 8005
