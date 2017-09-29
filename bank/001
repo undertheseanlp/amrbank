@@ -5,7 +5,7 @@
             :ARG1 (v3 / bằng_cấp
                   :mod (v4 / thuộc_tổ_chức-91
                         :ARG1 (v6 / Tỉnh_Ủy_Hải_Dương :wiki "Tỉnh_ủy_Hải_Dương"))
-                        :ARG2 (v5 / thư_ký ))))
+                        :ARG2 (v5 / Bí_thư ))))
 
 2. Hỏa hoạn tại Hà Nội, giải cứu 5 người, 2 chị em tử vong
 
@@ -25,40 +25,44 @@
 
 3. Cận cảnh những cánh rừng nguyên liệu bị bão số 10 phá nát
 
+(v3 / phá-01
+      :ARG0 (v2 / rừng
+            :mod (v1 / nguyên_liệu))
+      :ARG0 (v4 / bão :name (n / name :op1 "số_10"))
+      :mod (c / cận_cảnh))
 
 4. Viện KSND khẳng định không khởi tố vụ bà mẹ bị hiếp dâm 2 lần
 
-(v5 / khởi_tố-01 :polarity -
-      :ARG1 (v6 / hiếp_dâm-01 :quant 2
-            :ARG0 (v7 / person
-                  :ARG0-of (v8 / have-rel-role-91
-                        :ARG2 (v9 / bà_mẹ))))
-      :ARG1 (v4 / khẳng_định-01
-            :ARG0 (v3 / procuracy
-                  :poss (v2 / organization
-                        :mod (v1 / Viện_KSND)))))
+(v5 / khẳng_định-01
+      :ARG1 (v2 / organization
+            :mod (v1 / Viện_KSND))
+      :ARG0 (v3 / khởi_tố :polarity -
+        :ARG2 (v6 / hiếp_dâm-01 :quant 2
+            :ARG3 (v7 / person
+                        :ARG2 (v9 / bà_mẹ)))))
 
 5. Mỹ mở rộng lệnh cấm nhập cảnh gồm Bắc Hàn
 
 (v4 / lệnh_cấm-01
       :ARG0 (v1 / country :wiki "Hoa_Kỳ" :name (v2 / name :op1 "Mĩ"))
-      :ARG1 (v5 / country :wiki "Cộng_hòa_Dân_chủ_Nhân_dân_Triều_Tiên" :name (v6 / name :op1 "North" :op2 "Bắc_Hàn"))
-      :ARG1-of (v3 / mở_rộng-01))
+      :ARG1 (v5 / country :wiki "Cộng_hòa_Dân_chủ_Nhân_dân_Triều_Tiên" :name (v6 / name : "Bắc_Hàn"))
+      :ARG1-of (v3 / mở_rộng-01)
+:ARG2(n / name: "nhập_cảnh")
 
 6. Bộ Ngoại giao lên tiếng vụ cảnh sát biển Philippines bắn chết 2 ngư dân Việt Nam
 
-(v3 / lên tiếng-01
-      :ARG0 (v1 / Bộ Ngoại giao :wiki "Bộ_Ngoại_giao_(Việt_Nam)"))
-      :ARG1 (v5 / bắn chết-01
-            :ARG0 (v4 / cảnh sát biển)
-            :ARG1 (v8 / ngư dân :quant 2
-                  :mod (v6 / country :wiki "Việt Nam" :name (v7 / name :op1 "Việt Nam")))))
+(v3 / lên_tiếng-01
+      :ARG0 (v1 / Bộ Ngoại giao :wiki "Bộ_Ngoại_giao_(Việt_Nam)")
+      :ARG1 (v5 / bắn_chết-01
+            :ARG0 (v4 / cảnh_sát_biển_Philippines)
+            :ARG1 (v8 / ngư_dân :quant 2
+                  :mod (v6 / country :wiki "Việt_Nam" :name (v7 / name :op1 "Việt_Nam")))))
 
 7. Arsenal – West Brom: Không được phép sa chân 
 
 (v3 / được_phép-01 :polarity -
-      :ARG0 (v3 / country :wiki "Arsenal" :name (v4 / name :op1 "Arsenal"))
-      :ARG0 (v1 / country :wiki "West_Bromwich_Albion_F.C." :name (v2 / name :op1 "West_Brom")))
+      :ARG0 (o / organization :wiki "Arsenal" :name (n / name :op1 "Arsenal"))
+      :ARG1 (o / organization :wiki "West_Bromwich_Albion_F.C." :name (n / name :op1 "West_Brom"))
       :ARG1-of (v4 /sa_chân-01))
 
 8. Trung tướng Nga tử trận tại Syria do trúng pháo kích của IS
@@ -75,22 +79,29 @@
 (v4 / lặp_lại-01
       :ARG0 (v1 / person :wiki "Donald_Trump" :name (v2 / name :op1 "Donald" :op2 "Trump" :op3 "Con_rể"))
       :ARG1 (v7 / sai_lầm-02
-            :ARG0 (v5 / person :wiki "Clinton" :name (v6 / name :op1 "Clinton"))
-            :ARG0 v3)
+            :ARG0 (v5 / person :wiki "Clinton" :name (v6 / name :op1 "Clinton"))))
 
 10. Hà Nội: Trường mầm non đang xây dựng bị sập
 
 (v5 / Sập-01
-    :ARG1 (v4 / xây_dựng-01
-        :ARG0 (v3 / trường_mầm_non
-             :location (v1 / city :wiki "Hà_Nội" :name (v2 / name :op1 "Hà_Nội")))))
+    :ARG0 (v3 / trường_mầm_non
+             :ARG1 (v4 / xây_dựng-01)
+             :location (v1 / city :wiki "Hà_Nội" :name (n / name :op1 "Hà_Nội"))))
 
 11. Thua trận phút chót, HAGL lên án trọng tài
 
+(v5 / lên_án-01
+      :ARG0 (g / group :name "HAGL"
+      :ARG1 (v1 / thua-02
+            :time (v3 / temporal-quantity
+                  :unit (v4 / phút)
+                  :mod (v2 / cuối))))
+      :ARG1 (v6 / trọng_tài))
+      
 12. Cháy tại cửa hàng xăng dầu, 4 người bị bỏng nặng
 
 (m / multi-sentence
-      :snt1 (v1 / chay-01
+      :snt1 (v1 / cháy-01
             :ARG1 (v2 / cửa_hàng_xăng_dầu))
       :snt2 (v3 / người :quant 4
             :ARG0-of (v5 / bỏng-01
@@ -98,12 +109,28 @@
 
 13. 12 đại dự án thua lỗ ngàn tỷ đồng bây giờ ra sao?
 
-(v3 / thua_lỗ-02 :frequency 1000000000
+(v3 / thua_lỗ-02 :
+     :ARG2(q / monetary-quantity
+            :quant (m / more-than
+                  :op1 1000000000000))
+            :unit (v / Việt Nam đồng)
+            :mod (e / country
+                    :wiki "Việt_Nam"
+                    :name (n / name :op1 "Việt_Nam"))
       :ARG0 (v2 / dự_án :quant 12
             :mod (v1 / đại))
-      :time (v4 / bây_giờ))
+     :ARG1 (a / amr-unknown
+         :time (v4 / bây_giờ)))
 
 14. Chiều nay Hà Nội có thể mưa lớn giờ tan tầm
+
+(v5 / có_thể)
+      :ARG2 (c1 / chiều_nay
+              :duration (v8 / temporal-quantity
+                  :time (v9 / giờ_tan_tầm)))
+       :ARG1 (v7 / mưa-01
+                :mod (v6 / lớn))
+      :ARG1:(location (c / city :wiki "Hà_nội" :name (v2 / name :op1 "Hà_Nội")))
 
 15. Phó Thủ tướng: "Không trách nhiều chuyên gia nói 63 nền kinh tế 63 tỉnh thành"
 
@@ -209,42 +236,259 @@
 
 21. Không dọa "suông", Triều Tiên từng thực sự bắn hạ máy bay và bắt sống phi công Mỹ
 
+(m / multi-sentence
+      :snt1 (v3 / bắn_hạ
+            :ARG1 (v4 / Máy_bay))
+      :snt2 (a / bắt_sống
+            :ARG0 (c / country :wiki "Triều_Tiên" :name (n / name :"Triều_Tiên"))
+            :ARG1 (v6 / person
+                  :ARG0-of (v7 / phi_công-01)
+                  :mod (c2 / country :wiki "Mĩ" :name (v5 / name : "Mĩ"))))
+     :snt3 (v1 / dọa
+            :polarity -))
+
 22. Tổng thống Putin bất ngờ cách chức Tư lệnh Không quân Nga
+
+(v6 / cách_chức-01
+      :ARG0 (v3 / person :wiki "Putin" :name (v4 / name :op1 "Putin")
+            :ARG0-of (v1 / have-org-role-91
+                  :ARG2 (v2 / tổng_thống)))
+      :ARG1 (v12 / have-org-role-91
+            :ARG1 (v11 / không_quân :wiki "-"Không_quân""
+           :ARG1 (v7 / country :wiki "Nga" :name (v8 / name :op1 "Nga")))
+      :ARG2 (v13 / Tư_lệnh))
+      :manner (v5 / bất_ngờ))
 
 23. Xem máy bay ném bom của Nga khạc thổi bay kẻ thù trong chớp mắt
 
+(v4 / thổi_bay-01
+      :ARG1 (v3 / máy_bay_ném_bom-01
+            :mod (v1 / country :wiki "Nga" :name (v2 / name :op1 "Nga")))
+      :ARG2 (v5 / kẻ_thù)
+      :ARG0 (v6 / xem)
+      :ARG3 (v7 / chớp_mắt))
+
 24. Ai làm cho tên lửa Triều Tiên gây choáng váng thế giới?
+
+(v2 / làm-02
+      :ARG0 (v1 / amr-unknown)
+      :ARG1 (v4 / cháng_váng-01
+            :ARG0 (v3 / tên_lửa)
+            :ARG1 (v5 / thế_giới)))
 
 25. Hà Nội: Kẹt đầu trong thang máy chuyển đồ ăn, một người tử vong
 
+(v4 / người
+      :ARG0-of (v5 / kẹt_đầu-01
+             :ARG2 (v6 / thang_máy
+                    :mod (v3 / chuyển_đồ_ăn)))
+      :ARG1-of (v8 / tử_vong-01
+            :ARG1 (v7 / person :quant 1) )
+      :poss (v1 / city :wiki "Hà_nội" :name (v2 / name :op1 "Hà Nội")))
+
 26. Đồng bằng sông Cửu Long: Giảm lúa, xem mặn là cơ hội
+
+(v5 / cơ_hội
+      :ARG0 (v4 / xem
+            :mod (v3 / mặn))
+      :ARG1 (v2 / giảm
+            :mod (v6 / lúa))
+      :location (c2 / region :wiki "Đồng_bằng_sông_Cửu_Long" :name (n2 / name :op1 "Đồng_bằng_sông_Cửu_Long")))
 
 27. Phụ huynh không cho con đến trường để phản đối lạm thu
 
+(v4 / cho-01 :polarity -
+      :ARG0 (v1 / person
+            :ARG0-of (v2 / have-rel-role-91
+                  :ARG2 (v3 / phụ_huynh))
+      :ARG1 (v5 / con
+            :location (v6 / trường)))
+      :purpose (v7 / phản_đối-01
+            :ARG1 (v8 / lạm_thu-01
+                  :ARG0 v6)))
+
 28. GrabBike và xe ôm truyền thống lại ẩu đả
+
+(v3 / ẩu_đả-01
+      :mod (v2 / vehicle :op1 "GrabBike" :op2 "xe_ôm_truyền_thống")
+      :mod (v4 / lại))
 
 29. Kế toán trưởng PVN bị bắt và những "góc khuất" ở dự án Nhiệt điện Thái Bình 2
 
+(m / multi-sentence
+      :snt1 (v3 / bắt
+            :ARG0 (v1 / person
+                     :ARG0-of (v7 / kế_toán_trưởng_PVN)))
+      :snt2 (v2 / góc_khuất
+            :mod (v6 / dự_án
+                  :mod (v5 / nhiệt_điện
+                        :mod (v4 / Thái_Bình_2)))))
+
 30. Giám đốc OceanBank Hải Phòng và hai thuộc cấp bị bắt
+
+(v5 / bắt-01
+      :ARG1 (v1 / have-org-role-91
+            :ARG1 (v3 / person :quant 2
+                  :ARG1-of (v4 / thuộc_cấp))
+            :ARG2 (v2 / Giám_đốc
+                  :ARG1 "Hải_Phòng_OceanBank")))
 
 31. Đau đầu với xe máy Trung Quốc "copy"
 
+(v6 / thing
+    :ARG2-of (v7 / copy-01)
+    :compared-to (v8 / '')
+    :mod (v5 / ``)
+    :mod (v4 / xe_máy)
+    :mod (v2 / country
+        :name (v3 / name
+            :op1 "Trung_Quốc")
+        :wiki "Trung_Quốc")
+    :topic (v1 / đau_đầu))
+
 32. Vingroup bổ nhiệm cựu Phó chủ tịch của General Motors làm Tổng giám đốc Nhà máy sản xuất ô tô VinFast
+
+(v3 / bổ_nhiệm-01
+    :ARG0 (v1 / person
+        :name (v2 / name
+            :op1 "Vingroup")
+        :wiki "Vingroup")
+    :ARG2 (v11 / have-org-role-91
+        :ARG2 (v12 / giám_đốc)
+        :ARG1 (v13 / vinfast)
+        :ARG1 (v10 / tổng)
+        :ARG0 (v8 / company
+            :name (v9 / name
+                :op1 "General"
+                :op2 "Motors")
+            :wiki "General_Motors"
+            :ARG0-of (v6 / have-org-role-91
+                :ARG2 (v7 / chủ_tịch)))
+        :ARG1 (v5 / phó)
+        :time (v4 / cựu)
+        :ARG0 v1))
 
 33. Diễn viên hài Khánh Nam chưa tỉnh lại sau ca phẫu thuật xuất huyết não
 
+(v4 / trở_lại-01
+    :polarity -
+    :ARG0 (v2 / person
+        :name (v3 / name
+            :op1 "Khánh"
+            :op2 "Nam")
+        :wiki "Khánh_Nam")
+    :ARG1 (v5 / nhận_thức)
+    :time (v6 / sau
+        :op1 (v8 / xuất_huyết
+            :mod (v7 / não)))
+    :topic (v1 / diễn_viên_hài))
+
 34. Cuộc đời bi thảm vì ma túy của "nữ hoàng phim 18+"
+
+(v6 / nữ_hoàng
+    :mod (v5 / phim)
+    :mod (v4 / 18+)
+    :mod (v7 / '')
+    :manner (v3 / ``)
+    :poss (v2 / cuộc_đời
+        :mod (v1 / bi_thảm)))
 
 35. Gần ngày cưới, Song Joong Ki và Song Hye Kyo tay trong tay tình tứ đi mua sắm tại Paris
 
+(v10 / mua_sắm-01
+    :mod (v9 / tình_yêu-01)
+    :poss (v7 / person
+        :name (v8 / name
+            :op1 "Song"
+            :op2 "Hye"
+            :op3 "Kyo")
+        :wiki "Song_Hye_Kyo")
+    :op3 (v6 / và
+        :op2 (v4 / person
+            :name (v5 / name
+                :op1 "Song"
+                :op2 "Joong"
+                :op3 "Ki")
+            :wiki "Song_Joong_Ki")
+        :time (v3 / ngày
+            :mod (v2 / cưới-01))
+        :mod (v1 / gần-10))
+    :location (v11 / city
+        :name (v12 / name
+            :op1 "Paris")
+        :wiki "Paris"))
+
 36. Hội bạn thân '7 cô tiên' đẹp như hoa của vợ sắp cưới Cường Đô la
+
+(v4 / đẹp_như_hoa-02
+      :ARG1 (v3 / cô_tiên :quant 7)
+      :ARG1 (v7 / vợ_sắp_cưới
+            :poss (v5 / person :name (v6 / name :op1 "Cường_Đô_la")))
+      :ARG1-of (v2 / hội_bạn_thân-01))
 
 37. Đã đến lúc ngừng la ó Bale, không chỉ vì "siêu phẩm" trước Dortmund
 
+(v1 / thời_điểm-01
+    :mod (v2 / ngừng-01
+        :ARG1 (v3 / la_ó-01
+            :ARG1 (v4 / bale)))
+    :time (v6 / vì-01
+        :mod (v5 / chỉ)
+        :polarity -
+        :ARG0 (v7 / siêu_phẩm
+            :time (v8 / trước)
+            :location (v9 / dortmund))))
+
 38. "Bậc thầy phù thủy" De Bruyne giúp Man City thắng trận thứ 2 liên tiếp ở Champions League
+
+(v4 / giúp
+      :ARG0 (v3 / Bậc_thầy_phù_thủy
+            :mod (v1 / person :wiki "De_Bruyne" :name (v2 / name :op1 "De" :op2 "Bruyne")))
+      :ARG1 (v7 / chiến_thắng
+            :ARG1 (v10 / trận
+                  :ARG0 v5
+                  :ARG1 "Champions"
+                  :ARG1-of (v9 / liên_tiếp)
+                  :time (v8 / ordinal-entity :value 2))))
 
 39. Bị Spartak cầm hòa, Klopp sợ Liverpool không qua nổi vòng bảng
 
+(v5 / sợ-01
+    :ARG0 (v3 / person
+        :name (v4 / name
+            :op1 "Klopp")
+        :wiki "Klopp")
+    :medium (v2 / draw
+        :mod (v1 / spartak))
+    :ARG1 (v8 / cầm_hòa-01
+        :polarity -
+        :ARG1 (v10 / vòng
+            :mod (v9 / bảng)
+            :polarity -)
+        :ARG0 (v6 / city
+            :name (v7 / name
+                :op1 "Liverpool")
+            :wiki "Liverpool")
+        :ARG0 v3))
+
 40. CSKA Moscow vs Man Utd (1h45 ngày 28/9): Điểm tựa tinh thần nơi đất khách
 
+(v5 / -lrb-
+    :mod (v4 / utd
+        :mod (v3 / man))
+    :time (v6 / date-entity
+        :day 28
+        :month 9
+        :quant 145)
+    :time (v7 / date-entity
+        :day 28
+        :month 9)
+    :location (v8 / -rrb-)
+    :location (v9 / điểm_tựa
+        :mod (v10 / tinh_thần
+            :location (v11 / đất_khách)))
+    :poss (v1 / city
+        :name (v2 / name
+            :op1 "Moscow")
+        :wiki "Moscow"))
 
