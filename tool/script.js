@@ -25,9 +25,9 @@ $(document).ready(function () {
             $("#text").text(text);
             $("#amr").text(amr);
             var amr = $("#amr").val();
-            amr = parseNode(amr);
-            makeAMRListView(amr);
-            draw(amr);
+            window.amr = parseNode(amr);
+            makeAMRListView(window.amr);
+            draw(window.amr);
         }
     } catch (e) {
         console.log(e);

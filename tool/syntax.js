@@ -53,6 +53,7 @@ function parseRelations(text, top) {
         }
         var node = next.slice(0, i);
         var relations = [{
+            "id": makeid(),
             "role": role,
             "top": top,
             "node": parseNode(node)
@@ -61,6 +62,7 @@ function parseRelations(text, top) {
     // in case next is polarity
     else if (next[0] == "-") {
         var relations = [{
+            "id": makeid(),
             "role": role,
             "top": top,
             "node": {
@@ -78,6 +80,7 @@ function parseRelations(text, top) {
         if (i != -1) {
             var content = next.slice(1, i - 1);
             var relations = [{
+                "id": makeid(),
                 "role": role,
                 "top": top,
                 "node": {
@@ -93,6 +96,7 @@ function parseRelations(text, top) {
         } else {
             var content = next.slice(1, -1);
             var relations = [{
+                "id": makeid(),
                 "role": role,
                 "top": top,
                 "node": {
@@ -128,6 +132,7 @@ function parseRelations(text, top) {
             variable = content;
         }
         var relations = [{
+            "id": makeid(),
             "role": role,
             "top": top,
             "node": {
@@ -178,5 +183,41 @@ function parseNode(text) {
     return amr;
 }
 
+function convertToTriples(tree){
+    var node = {
+        "type": tree["type"],
+        "variable": tree["variable"],
+        "class": tree["class"]
+    };
+    var output = {
+        "nodes": [node],
+        "relations": []
+    };
+    for(var i = 0; i < tree.relations.length; i++){
+        var relation = tree.relations[i];
+        var relation_ = {
+            "id": relation["id"],
+            "role": relation["role"],
+            "from": relation["top"],
+            "to": relation["node"]["variable"]
+        };
+        output.relations.push(relation_);
+        var child = convertToTriples(relation["node"]);
+        output.relations = _.union(output.relations, child["relations"]);
+        output.nodes = _.union(output.nodes, child["nodes"]);
+    }
+    return output;
+}
 
-
+function convertToTree(triples){
+    var tree = triples["nodes"][0];
+    tree["relations"] = [];
+    return tree;
+}
+function removeRelation(tree, id){
+    var output = {};
+    var triples = convertToTriples(tree);
+    triples["relations"] = _.filter(triples.relations, function(relation){ relation.id != id });
+    var tree = convertToTree(triples);
+    return tree;
+}
