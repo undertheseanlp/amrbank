@@ -6,6 +6,13 @@ function decode(s) {
     return decodeURIComponent(atob(s))
 }
 
+function syncAMR(raw){
+    window.amr = textToTree(raw);
+    $("#amr").text(treeToText(window.amr, true));
+    makeAMRListView(window.amr);
+    draw(window.amr);
+};
+
 $("#updateText").click(function () {
     var text = $("#text").val() + "||||" + $("#amr").val();
     url = new URL(window.location.href);
@@ -21,13 +28,9 @@ $(document).ready(function () {
             var data = decode(id);
             data = data.split("||||");
             var text = data[0];
-            var amr = data[1];
+            var raw = data[1];
             $("#text").text(text);
-            $("#amr").text(amr);
-            var amr = $("#amr").val();
-            window.amr = parseNode(amr);
-            makeAMRListView(window.amr);
-            draw(window.amr);
+            syncAMR(raw);
         }
     } catch (e) {
         console.log(e);

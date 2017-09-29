@@ -81,8 +81,7 @@ function makeAMRListView(tree) {
     $("#amr_listview .actionDelete").click(function(){
         var id = $(this).parent().parent().attr("id");
         window.amr = removeRelation(window.amr, id);
-        makeAMRListView(window.amr);
-        draw(window.amr);
+        syncAMR(treeToText(window.amr));
         // $(this).parent().parent().hide();
     });
 }

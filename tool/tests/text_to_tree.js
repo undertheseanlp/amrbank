@@ -1,52 +1,13 @@
-var expect = chai.expect;
-var should = chai.should();
-
-
-describe('Delete', function () {
-    it('Delete simple relation', function () {
-        // text: today it's sunny
-        var tree = {
-            "type": "sunny",
-            "variable": "v2",
-            "relations": [{
-                "id": "e29mM",
-                "role": ":time",
-                "top": "v2",
-                "node": {"type": "today", "variable": "v1", "relations": []}
-            }]
-        };
-        var tree = removeRelation(tree, "e29mM");
-        expect(tree["relations"]).to.be.empty;
-        expect(tree).to.include({"variable": "v2", "type": "sunny"});
-    })
-
-     it('Delete an object has two relations', function () {
-        var tree = {
-            "type": "sunny",
-            "variable": "v2",
-            "relations": [{
-                "id": "e29mM",
-                "role": ":time",
-                "top": "v2",
-                "node": {"type": "today", "variable": "v1", "relations": []}
-            }]
-        };
-        var tree = removeRelation(tree, "e29mM");
-        expect(tree["relations"]).to.be.empty;
-        expect(tree).to.include({"variable": "v2", "type": "sunny"});
-    })
-});
-
-describe('Basic AMR', function () {
+describe('textToTree: Node', function () {
     it('Simple Concept', function () {
         var text = "(v1 / new)";
-        var result = parseNode(text);
+        var result = textToTree(text);
         expect(result).to.include({"variable": "v1"});
     });
 
     it('Simple Relations', function () {
         var text = "(v2 / version :mod (v1 / new))";
-        var result = parseNode(text);
+        var result = textToTree(text);
         var relation = result["relations"][0];
         var node = result["relations"][0]["node"];
         expect(result).to.include({"variable": "v2"});
@@ -56,7 +17,7 @@ describe('Basic AMR', function () {
 
     it('Multiple Concepts', function () {
         var text = "(v2 / version :mod (v1 / new) :mod (v4 / bill :mod (v3 / health-care)))";
-        var result = parseNode(text);
+        var result = textToTree(text);
         var relation1 = result["relations"][0];
         var relation2 = result["relations"][1];
         expect(result).to.include({"variable": "v2"});
@@ -65,10 +26,10 @@ describe('Basic AMR', function () {
     });
 });
 
-describe('Relations', function () {
+describe('textToTree: Relations', function () {
     it('String', function () {
         var text = "(v1 / new :name \"Hanoi\")";
-        var result = parseNode(text);
+        var result = textToTree(text);
         expect(result).to.include({"variable": "v1"});
         var relation1 = result["relations"][0];
         expect(relation1).to.include({"role": ":name"});
@@ -78,7 +39,7 @@ describe('Relations', function () {
 
     it('Mixed Strings', function () {
         var text = "(v1 / new :name \"Hanoi\" :name2 \"Vietnam\")";
-        var result = parseNode(text);
+        var result = textToTree(text);
         console.log(result);
         expect(result).to.include({"variable": "v1"});
         var relation1 = result["relations"][0];
@@ -93,7 +54,7 @@ describe('Relations', function () {
 
     it('Variable', function () {
         var text = "(v1 / new :ARG0 v1)";
-        var result = parseNode(text);
+        var result = textToTree(text);
         expect(result).to.include({"variable": "v1"});
         var relation1 = result["relations"][0];
         expect(relation1).to.include({"role": ":ARG0"});
@@ -103,7 +64,7 @@ describe('Relations', function () {
 
     it('Mixed Variables', function () {
         var text = "(v1 / new :ARG0 v1 :name v2)";
-        var result = parseNode(text);
+        var result = textToTree(text);
         expect(result).to.include({"variable": "v1"});
         var relation1 = result["relations"][0];
         expect(relation1).to.include({"role": ":ARG0"});
@@ -113,7 +74,7 @@ describe('Relations', function () {
 
     it('Number', function () {
         var text = "(v1 / new :quant 5)";
-        var result = parseNode(text);
+        var result = textToTree(text);
         expect(result).to.include({"variable": "v1"});
         var relation1 = result["relations"][0];
         expect(relation1).to.include({"role": ":quant"});
@@ -123,7 +84,7 @@ describe('Relations', function () {
 
     it('Mixed Numbers', function () {
         var text = "(v1 / new :quant 5 :quant2 10)";
-        var result = parseNode(text);
+        var result = textToTree(text);
         expect(result).to.include({"variable": "v1"});
         var relation1 = result["relations"][0];
         var relation2 = result["relations"][1];
@@ -135,18 +96,18 @@ describe('Relations', function () {
 
     it('Node', function () {
         var text = "(v1 / new :mod (v2 / new))";
-        var result = parseNode(text);
+        var result = textToTree(text);
         expect(result).to.include({"variable": "v1"});
         var relation1 = result["relations"][0];
         expect(relation1["node"]).to.include({"variable": "v2"});
     });
 });
 
-describe("Handle Exception", function () {
+describe("textToTree: Handle Exception", function () {
     it('Parentheses Missing', function () {
         var text = "(v1 / new :mod (v2 / new)";
         expect(function () {
-            parseNode(text)
+            textToTree(text)
         }).to.throw("Syntax Exception");
     });
 });
