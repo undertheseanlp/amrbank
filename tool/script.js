@@ -30,7 +30,13 @@ $(document).ready(function () {
             var text = data[0];
             var raw = data[1];
             $("#text").text(text);
-            syncAMR(raw);
+            $("#amr").text(raw);
+            try {
+                syncAMR(raw);
+            } catch(e){
+                $("#SYNTAX_ERROR").show();
+            }
+
         }
     } catch (e) {
         console.log(e);
