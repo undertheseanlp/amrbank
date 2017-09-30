@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>AMR Editor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./static/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+</head>
+<body>
+<div ng-include src="'./static/app/common/nav.html'"></div>
+<div class="container" style="margin-top: 60px;">
+  <ui-view></ui-view>
+</div>
+
+<!-- scripts -->
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sprintf/1.1.1/sprintf.js"></script>
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
+
+<script
+    src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+<script type="text/javascript" src="http://visjs.org/dist/vis.js"></script>
+<link href="http://visjs.org/dist/vis-network.min.css" rel="stylesheet"
+      type="text/css"/>
+<script src="./static/app/app.js"></script>
+
+<script src="static/js/network.js"></script>
+<script src="static/js/amr/text_to_tree.js"></script>
+<script src="static/js/amr/tree_to_triple.js"></script>
+<script src="static/js/amr/triple_to_tree.js"></script>
+<script src="static/js/amr/tree_to_text.js"></script>
+<script src="static/js/amr/methods.js"></script>
+<script src="static/js/amr_listview.js"></script>
+
+<script src="./static/app/amr/list.js"></script>
+<script src="./static/app/amr/detail.js"></script>
+
+<script src="./static/app/route.js"></script>
+
+<script src="static/js/script.js"></script>
+</body>
+</html>

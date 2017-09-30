@@ -1,0 +1,15 @@
+#amr_listview a {
+    color: #007700;
+}
+
+#amr_listview li:hover {
+    background: #e5e5e5;
+}
+
+#amr_listview .relation-focus {
+    background: #e5e5e5;
+}
+
+.role {
+    color: #007700;
+}

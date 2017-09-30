@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="cols-xs-12">
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary">Save</button>
+      </div>
+      <br/><br/>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <textarea id="text" class="form-control"
+                  rows="2">{{ doc.text }}</textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-3">
+        <div id="message">
+          <span class="label label-danger" style="display:none"
+                id="SYNTAX_ERROR">Lỗi cú pháp</span>
+        </div>
+        <br/>
+        <textarea id="amr" class="form-control"
+                  rows="20">{{ doc.amr}}</textarea>
+      </div>
+      <div class="col-xs-3">
+        <div id="amr_listview"></div>
+      </div>
+      <div class="col-xs-6" style="padding-top:20px;">
+        <div id="mynetwork" style="height: 400px"></div>
+      </div>
+    </div>
+  </div>
+</div>
