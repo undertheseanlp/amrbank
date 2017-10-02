@@ -1,2 +1,2 @@
-git pull origin beta
-python -m SimpleHTTPServer 8006
+git pull origin tool
+python -m SimpleHTTPServer 8005
