@@ -1,4 +1,4 @@
-app.controller("DetailAMRCtrl", function ($scope, $stateParams, AMRDoc, $state) {
+app.controller("DetailAMRCtrl", function ($scope, $stateParams, AMRDoc, $state, STATUSES, QUALITIES) {
 
     function syncAMR(raw) {
         window.amr = textToTree(raw);
@@ -6,6 +6,9 @@ app.controller("DetailAMRCtrl", function ($scope, $stateParams, AMRDoc, $state) 
         makeAMRListView(window.amr);
         draw(window.amr);
     };
+    $scope.STATUSES = STATUSES;
+
+    $scope.QUALITIES = QUALITIES;
 
     $scope.id = $stateParams.id;
     AMRDoc.get({id: $scope.id}, function (doc) {

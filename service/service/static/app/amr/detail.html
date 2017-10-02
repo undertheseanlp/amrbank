@@ -8,12 +8,14 @@
     <button ng-show="MESSAGES.SYNTAX_ERROR" type="button"
             class="btn btn-danger btn-xs disabled">AMR Syntax Error
     </button>
-    <button ng-show="MESSAGES.CREATE_SUCCESS" type="button" class="btn btn-success btn-xs disabled">Document is
+    <button ng-show="MESSAGES.CREATE_SUCCESS" type="button"
+            class="btn btn-success btn-xs disabled">Document is
       saved successfully.
     </button>
-      <div class="loader-xs" ng-show="MESSAGES.LOADING"></div>
+    <div class="loader-xs" ng-show="MESSAGES.LOADING"></div>
     <div class="pull-right">
-      <button type="button" class="btn btn-primary btn-success btn-xs" ng-click="save(true)">Save and
+      <button type="button" class="btn btn-primary btn-success btn-xs"
+              ng-click="save(true)">Save and
         Create New
       </button>
     </div>
@@ -22,8 +24,16 @@
 
   <div class="row">
     <div class="col-xs-12">
-        <textarea id="text" class="form-control"
-                  rows="1" ng-model="doc.text">{{ doc.text }}</textarea>
+      <p>
+        <span>Status:</span>
+        <a ng-class="{'label': true, 'label-grey': doc.status != status.value, 'label-warning': doc.status == status.value}" ng-click="doc.status = status.value" ng-repeat="status in STATUSES">{{ status.label }}</a>
+        &nbsp;&nbsp;&nbsp;
+        <span>Quality:</span>
+        <a ng-class="{'label': true, 'label-grey': doc.quality != quality.value, 'label-warning': doc.quality == quality.value}" ng-click="doc.quality = quality.value" ng-repeat="quality in QUALITIES">{{ quality.label }}</a>
+      </p>
+      <hr/>
+      <textarea id="text" class="form-control"
+                rows="1" ng-model="doc.text">{{ doc.text }}</textarea>
       <br/>
     </div>
   </div>
@@ -40,11 +50,11 @@
       <div id="mynetwork" style="height: 400px"></div>
     </div>
   </div>
-
   <h3>
     <hr/>
     <div class="pull-right">
-      <button type="button" class="btn btn-primary btn-danger btn-sm" ng-click="delete()">Delete
+      <button type="button" class="btn btn-primary btn-danger btn-sm"
+              ng-click="delete()">Delete
       </button>
     </div>
   </h3>

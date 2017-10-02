@@ -2,7 +2,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
     $stateProvider
         .state({
-            url: '/',
+            url: '/?status&quality',
             name: 'amrList',
             controller: 'ListAMRCtrl',
             templateUrl: "./static/app/amr/list.html"
