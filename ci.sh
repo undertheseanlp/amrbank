@@ -1,4 +1,3 @@
-cp tool/HISTORY.md tool/HISTORY.txt
 git add -A
-git commit -m "update editor"
+git commit -m "update beta"
 git push origin beta
