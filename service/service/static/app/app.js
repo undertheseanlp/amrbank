@@ -40,15 +40,15 @@ app.constant("STATUSES", [
 
 app.constant("QUALITIES", [
     {
-        "label": "poor",
+        "label": "Poor",
         "value": "POOR"
     },
     {
-        "label": "acceptable",
+        "label": "Acceptable",
         "value": "ACCEPTABLE"
     },
     {
-        "label": "perfect!",
+        "label": "Perfect!",
         "value": "PERFECT"
     }
 ]);
