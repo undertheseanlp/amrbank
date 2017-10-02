@@ -1,0 +1,28 @@
+<div class="container">
+
+  <h3>
+    New Document
+    <button type="button" class="btn btn-primary btn-xs" ng-click="save()">
+      Save
+    </button>
+    <!-- messages -->
+    <button ng-show="MESSAGES.TEXT_MISSING" type="button"
+            class="btn btn-danger btn-xs disabled">Text field is required!</button>
+    <hr/>
+  </h3>
+
+  <div class="row">
+    <div class="col-xs-12">
+        <textarea id="text" class="form-control"
+                  rows="1" ng-model="doc.text" placeholder="text">{{ doc.text }}</textarea>
+      <br/>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <textarea id="amr" class="form-control"
+                rows="20" ng-model="doc.amr" placeholder="amr">{{ doc.amr}}</textarea>
+    </div>
+  </div>
+</div>

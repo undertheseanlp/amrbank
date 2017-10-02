@@ -8,6 +8,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
             templateUrl: "./static/app/amr/list.html"
         })
         .state({
+            url: '/newdocs/',
+            name: 'amrNew',
+            controller: 'NewAMRCtrl',
+            templateUrl: "./static/app/amr/new.html"
+        })
+        .state({
             url: '/docs/:id',
             name: 'amrDetail',
             controller: 'DetailAMRCtrl',

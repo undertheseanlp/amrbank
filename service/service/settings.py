@@ -69,6 +69,7 @@ TEMPLATES = [
     },
 ]
 
+APPEND_SLASH = True
 WSGI_APPLICATION = 'service.wsgi.application'
 
 

@@ -20,7 +20,7 @@ from rest_framework import routers
 from service.views import AMRViewSet, editor
 
 router = routers.DefaultRouter()
-router.register(r'tasks', AMRViewSet)
+router.register(r'amrdocs', AMRViewSet)
 admin.autodiscover()
 
 urlpatterns = [

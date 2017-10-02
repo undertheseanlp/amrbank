@@ -1,4 +1,4 @@
-window.app = angular.module("myApp", ['ui.router']);
+window.app = angular.module("myApp", ['ui.router', 'ngResource']);
 
 app.directive('myEnter', function () {
     return function (scope, element, attrs) {
@@ -14,3 +14,13 @@ app.directive('myEnter', function () {
 });
 
 app.constant("SERVICE_URL", "http://localhost:8000/api/");
+
+app.config(function($resourceProvider) {
+  $resourceProvider.defaults.stripTrailingSlashes = false;
+});
+
+app.factory('AMRDoc', function($resource){
+   return $resource('/api/amrdocs/:id/', null, {
+       'update': {method: 'PUT'}
+   })
+});
