@@ -5,8 +5,8 @@ var AMRListViewConfiguration = {
 
 
 function makeAMRNode(node) {
-    var content = sprintf('<li class="list-group-item">%1$s / <a href="">%2$s</a></li></ul>', node.variable, node.type);
-    $(amrDom).append(content);
+    var content = sprintf('<li class="list-group-item">%1$s / <a href="">%2$s</a></li>', node.variable, node.type);
+    $(window.amrDom).append(content);
     makeAMRRelations(node.relations, 1);
 }
 
@@ -66,7 +66,7 @@ function makeAMRListView(tree) {
     $(window.amrDom).html("");
     var content = '<ul class="list-group"></ul>';
     $(amrDom).append(content);
-    window.armDom = '#amr_listview ul';
+    window.amrDom = '#amr_listview ul';
     makeAMRNode(tree);
 
     // toggle
