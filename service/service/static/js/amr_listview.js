@@ -3,7 +3,6 @@ var AMRListViewConfiguration = {
 };
 
 
-
 function makeAMRNode(node) {
     var content = sprintf('<li class="list-group-item">%1$s / <a href="">%2$s</a></li>', node.variable, node.type);
     $(window.amrDom).append(content);
@@ -60,6 +59,7 @@ window.amr = null;
 function makeAMRRaw(tree){
     console.log(tree);
 }
+
 function makeAMRListView(tree) {
     window.amr = tree;
     window.amrDom = "#amr_listview";
