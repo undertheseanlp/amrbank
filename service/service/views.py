@@ -2,16 +2,22 @@ import django_filters
 from django.shortcuts import render
 from rest_framework import viewsets
 
-from service.models import AMRDoc
-from service.serializers import AMRDocSerializer
+from service.models import Document, Corpus
+from service.serializers import DocumentSerializer, CorpusSerializer
 
 
-def editor(request):
+def homepage(request):
     return render(request, 'index.html')
 
 
-class AMRViewSet(viewsets.ModelViewSet):
-    queryset = AMRDoc.objects.all()
-    serializer_class = AMRDocSerializer
+class DocumentViewSet(viewsets.ModelViewSet):
+    queryset = Document.objects.all()
+    serializer_class = DocumentSerializer
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
     filter_fields = ('status', 'quality')
+
+
+class CorpusViewSet(viewsets.ModelViewSet):
+    queryset = Corpus.objects.all()
+    serializer_class = CorpusSerializer
+    filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)

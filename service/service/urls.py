@@ -17,15 +17,16 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 
-from service.views import AMRViewSet, editor
+from service.views import DocumentViewSet, homepage, CorpusViewSet
 
 router = routers.DefaultRouter()
-router.register(r'amrdocs', AMRViewSet)
+router.register(r'documents', DocumentViewSet)
+router.register(r'corpora', CorpusViewSet)
 admin.autodiscover()
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', editor),
+    url(r'^$', homepage),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/',
         include('rest_framework.urls', namespace='rest_framework'))

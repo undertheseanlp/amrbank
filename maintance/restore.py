@@ -1,16 +1,33 @@
 import requests
 import json
-
 from os.path import join
 
-content = open(join("backup", "20170930.json"), "r").read()
-data = json.loads(content)
-for item in data:
-    url = "http://localhost:8000/api/tasks/"
-    data = item
+SERVER_API = "http://localhost:8000"
+
+
+def create_document(document):
     headers = {
         'Content-type': 'application/json',
         'Accept': 'application/json'}
-    r = requests.post(url, data=json.dumps(data), headers=headers)
+    url = "{}/api/documents/".format(SERVER_API)
+    r = requests.post(url, data=json.dumps(document), headers=headers)
     print(0)
-print(0)
+
+
+def create_corpus(corpus):
+    headers = {
+        'Content-type': 'application/json',
+        'Accept': 'application/json'}
+    url = "{}/api/corpora/".format(SERVER_API)
+    r = requests.post(url, data=json.dumps(corpus), headers=headers)
+    corpus_id = r.json()["id"]
+    for document in item["documents"]:
+        document["corpus"] = corpus_id
+        create_document(document)
+
+
+if __name__ == '__main__':
+    content = open(join("data", "20171014.json"), "r").read()
+    corpora = json.loads(content)
+    for item in corpora:
+        create_corpus(item)
