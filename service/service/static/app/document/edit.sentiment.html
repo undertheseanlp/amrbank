@@ -29,8 +29,8 @@
             class="form-buttons form-inline"
             shown="inserted == sentiment">
         <button type="submit" ng-disabled="rowform.$waiting"
-                class="btn btn-sm btn-primary">
-          Save
+                class="btn btn-sm btn-warning">
+          Update
         </button>
         <button type="button" ng-disabled="rowform.$waiting"
                 ng-click="rowform.$cancel()"
@@ -39,7 +39,7 @@
         </button>
       </form>
       <div class="buttons" ng-show="!rowform.$visible">
-        <button type="button" class="btn btn-primary btn-sm"
+        <button type="button" class="btn btn-warning btn-sm"
                 ng-click="rowform.$show()">Edit
         </button>
         <button type="button" class="btn btn-danger btn-sm"

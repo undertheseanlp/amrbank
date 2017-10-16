@@ -15,6 +15,7 @@ class Document(models.Model):
     amr = models.TextField(blank=True)
     sentiment = models.TextField(blank=True)
     category = models.TextField(blank=True)
+    act = models.TextField(blank=True)
     status = models.TextField(blank=True)
     quality = models.TextField(blank=True)
     corpus = models.ForeignKey(Corpus, related_name="documents")

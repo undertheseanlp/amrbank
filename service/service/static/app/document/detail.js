@@ -26,11 +26,10 @@ app.controller("DetailAMRCtrl", function ($scope, $stateParams, Corpus, Document
         {value: "TRADEMARK", text: 'TRADEMARK'},
     ];
 
-
     $scope.showCategory = function (category) {
         var selected = [];
         if (category.name) {
-            selected = $filter('filter')($scope.aspects, {value: category.name});
+            selected = $filter('filter')($scope.CATEGORIES, {value: category.name});
         }
         return selected.length ? selected[0].text : 'Not set';
     };
@@ -45,6 +44,41 @@ app.controller("DetailAMRCtrl", function ($scope, $stateParams, Corpus, Document
 
     $scope.removeCategory = function (index) {
         $scope.categories.splice(index, 1);
+    };
+
+    $scope.ACTS = [
+        {value: "GREETING", text: 'GREETING'},
+        {value: "SELFDISCLOSURE", text: 'SELFDISCLOSURE'},
+        {value: "ORDER", text: 'ORDER'},
+        {value: "QUESTION", text: 'QUESTION'},
+        {value: "INVITATION", text: 'INVITATION'},
+        {value: "INFORMATION", text: 'INFORMATION'},
+        {value: "THANKS", text: 'THANKS'},
+        {value: "CURSE", text: 'CURSE'},
+        {value: "APOLOGY", text: 'APOLOGY'},
+        {value: "INTERJECTION", text: 'INTERJECTION'},
+        {value: "MISC", text: 'MISC'}
+    ];
+
+    $scope.showAct = function (act) {
+        var selected = [];
+        if (act.name) {
+            selected = $filter('filter')($scope.ACTS, {value: act.name});
+            console.log(selected);
+        }
+        return selected.length ? selected[0].text : 'Not set';
+    };
+
+    $scope.addAct = function () {
+        $scope.inserted = {
+            id: $scope.acts.length + 1,
+            name: ''
+        };
+        $scope.acts.push($scope.inserted);
+    };
+
+    $scope.removeAct = function (index) {
+        $scope.acts.splice(index, 1);
     };
 
     $scope.aspects = [
@@ -116,6 +150,11 @@ app.controller("DetailAMRCtrl", function ($scope, $stateParams, Corpus, Document
         } catch (e) {
             $scope.categories = [];
         }
+        try {
+            $scope.acts = JSON.parse(doc.act);
+        } catch (e) {
+            $scope.acts = [];
+        }
 
         $scope.corpusId = doc.corpus;
         Corpus.get({id: doc.corpus}, function (corpus) {
@@ -139,6 +178,7 @@ app.controller("DetailAMRCtrl", function ($scope, $stateParams, Corpus, Document
             $scope.LOADING = true;
             $scope.doc.sentiment = angular.toJson($scope.sentiments);
             $scope.doc.category = angular.toJson($scope.categories);
+            $scope.doc.act = angular.toJson($scope.acts);
             var action = Document.update({id: $scope.id}, $scope.doc);
             action.$promise.then(function () {
                 $scope.MESSAGES.CREATE_SUCCESS = true;
