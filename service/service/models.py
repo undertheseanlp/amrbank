@@ -13,6 +13,8 @@ class Document(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     text = models.TextField()
     amr = models.TextField(blank=True)
+    sentiment = models.TextField(blank=True)
+    category = models.TextField(blank=True)
     status = models.TextField(blank=True)
     quality = models.TextField(blank=True)
     corpus = models.ForeignKey(Corpus, related_name="documents")

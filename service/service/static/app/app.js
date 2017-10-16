@@ -1,4 +1,4 @@
-window.app = angular.module("myApp", ['ui.router', 'ngResource']);
+window.app = angular.module("myApp", ['ui.router', 'ngResource', 'xeditable','ui.bootstrap']);
 
 app.directive('myEnter', function () {
     return function (scope, element, attrs) {
@@ -57,10 +57,39 @@ app.config(function ($resourceProvider) {
     $resourceProvider.defaults.stripTrailingSlashes = false;
 });
 
-app.factory('AMRDoc', function ($resource) {
-    return $resource('/api/amrdocs/:id/', {
+app.factory('Document', function ($resource) {
+    return $resource('/api/documents/:id/', {
         'filter': '@filter'
     }, {
         'update': {method: 'PUT'}
     })
 });
+
+app.factory('Corpus', function ($resource) {
+    return $resource('/api/corpora/:id/', {
+        'filter': '@filter'
+    }, {
+        'update': {method: 'PUT'}
+    })
+});
+
+
+app.directive( "mwConfirmClick", [
+  function( ) {
+    return {
+      priority: -1,
+      restrict: 'A',
+      scope: { confirmFunction: "&mwConfirmClick" },
+      link: function( scope, element, attrs ){
+        element.bind( 'click', function( e ){
+          // message defaults to "Are you sure?"
+          var message = attrs.mwConfirmClickMessage ? attrs.mwConfirmClickMessage : "Are you sure?";
+          // confirm() requires jQuery
+          if( confirm( message ) ) {
+            scope.confirmFunction();
+          }
+        });
+      }
+    }
+  }
+]);

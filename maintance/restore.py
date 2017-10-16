@@ -11,7 +11,6 @@ def create_document(document):
         'Accept': 'application/json'}
     url = "{}/api/documents/".format(SERVER_API)
     r = requests.post(url, data=json.dumps(document), headers=headers)
-    print(0)
 
 
 def create_corpus(corpus):
@@ -27,7 +26,7 @@ def create_corpus(corpus):
 
 
 if __name__ == '__main__':
-    content = open(join("data", "20171014.json"), "r").read()
+    content = open(join("data", "20171016.json"), "r").read()
     corpora = json.loads(content)
     for item in corpora:
         create_corpus(item)

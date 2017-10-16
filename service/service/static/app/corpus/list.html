@@ -1,0 +1,23 @@
+<h3>
+  Corpora
+  <div class="pull-right">
+    <a class="btn btn-sm btn-success" ui-sref="newCorpus">New Corpus</a>
+  </div>
+</h3>
+<hr/>
+<table class="table table-condensed table-hover">
+  <thead>
+  <tr>
+    <th>#</th>
+    <th>Title</th>
+    <th>Description</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="corpus in corpora" ui-sref="detailCorpus({id: corpus.id})" style="cursor:pointer">
+    <th><a ui-sref="detailCorpus({id: corpus.id})">{{ corpus.id }}</a></th>
+    <td>{{ corpus.title }}</td>
+    <td>{{ corpus.description }}</td>
+  </tr>
+  </tbody>
+</table>

@@ -1,4 +1,4 @@
-app.controller("DetailAMRCtrl", function ($scope, $stateParams, AMRDoc, $state, STATUSES, QUALITIES) {
+app.controller("DetailCorpusCtrl", function ($scope, $stateParams, Corpus, $state, STATUSES, QUALITIES) {
 
     function syncAMR(raw) {
         window.amr = textToTree(raw);
@@ -11,14 +11,9 @@ app.controller("DetailAMRCtrl", function ($scope, $stateParams, AMRDoc, $state, 
     $scope.QUALITIES = QUALITIES;
 
     $scope.id = $stateParams.id;
-    AMRDoc.get({id: $scope.id}, function (doc) {
-        $scope.doc = doc;
-        try {
-            syncAMR($scope.doc.amr);
-        } catch (e) {
-            console.log(e);
-            $("#SYNTAX_ERROR").show();
-        }
+    Corpus.get({id: $scope.id}, function (corpus) {
+        $scope.corpus = corpus;
+        $scope.documents = corpus["documents"];
     });
 
     $scope.hideMessages = function () {
@@ -31,12 +26,16 @@ app.controller("DetailAMRCtrl", function ($scope, $stateParams, AMRDoc, $state, 
 
     $scope.hideMessages();
 
+    $scope.update = function(){
+        return Corpus.update({id: $scope.id}, $scope.corpus);
+    };
+
     $scope.save = function (createNew) {
         try {
             $scope.hideMessages();
             $scope.LOADING = true;
             syncAMR($scope.doc.amr);
-            var action = AMRDoc.update({id: $scope.id}, $scope.doc);
+            var action = Corpus.update({id: $scope.id}, $scope.doc);
             action.$promise.then(function () {
                 $scope.MESSAGES.CREATE_SUCCESS = true;
                 $scope.LOADING = false;
@@ -55,8 +54,8 @@ app.controller("DetailAMRCtrl", function ($scope, $stateParams, AMRDoc, $state, 
     };
 
     $scope.delete = function(){
-      AMRDoc.delete({id: $scope.id}).$promise.then(function(){
-          $state.go('amrList');
+      Corpus.delete({id: $scope.id}).$promise.then(function(){
+          $state.go('listCorpus');
       })
     }
 });

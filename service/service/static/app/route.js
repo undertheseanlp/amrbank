@@ -3,20 +3,38 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state({
             url: '/?status&quality',
+            name: 'listCorpus',
+            controller: 'ListCorpusCtrl',
+            templateUrl: "./static/app/corpus/list.html"
+        })
+        .state({
+            url: '/newCorpus',
+            name: 'newCorpus',
+            controller: 'NewCorpusCtrl',
+            templateUrl: "./static/app/corpus/new.html"
+        })
+        .state({
+            url: '/corpora/:id',
+            name: 'detailCorpus',
+            controller: 'DetailCorpusCtrl',
+            templateUrl: "./static/app/corpus/detail.html"
+        })
+        .state({
+            url: '/documents?status&quality',
             name: 'amrList',
             controller: 'ListAMRCtrl',
             templateUrl: "./static/app/amr/list.html"
         })
         .state({
-            url: '/newdocs/',
-            name: 'amrNew',
-            controller: 'NewAMRCtrl',
-            templateUrl: "./static/app/amr/new.html"
+            url: '/documents/newDocument?corpusId',
+            name: 'newDocument',
+            controller: 'NewDocumentCtrl',
+            templateUrl: "./static/app/document/new.html"
         })
         .state({
-            url: '/docs/:id',
-            name: 'amrDetail',
+            url: '/documents/:id',
+            name: 'detailDocument',
             controller: 'DetailAMRCtrl',
-            templateUrl: "./static/app/amr/detail.html"
+            templateUrl: "./static/app/document/detail.html"
         });
 });

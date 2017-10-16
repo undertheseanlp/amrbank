@@ -1,4 +1,4 @@
-app.controller("ListAMRCtrl", function ($scope, AMRDoc, STATUSES, QUALITIES, $stateParams) {
+app.controller("ListCorpusCtrl", function ($scope, Corpus, STATUSES, QUALITIES, $stateParams) {
     $scope.STATUSES = STATUSES;
     $scope.QUALITIES = QUALITIES;
     console.log($stateParams);
@@ -12,8 +12,8 @@ app.controller("ListAMRCtrl", function ($scope, AMRDoc, STATUSES, QUALITIES, $st
     if($scope.quality != "ALL"){
         query["quality"] = $scope.quality;
     }
-    AMRDoc.query(query, function(data){
-        $scope.docs = data;
+    Corpus.query(query, function(data){
+        $scope.corpora = data;
     });
 
     $scope.updateStatus = function(value){

@@ -25,7 +25,7 @@ SECRET_KEY = '0!*0nj#5gvse-1uqdr*(_w3j^tgba(gssc%$ptx+md1=f0ex0('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'magizbox.com']
+ALLOWED_HOSTS = ['localhost', 'magizbox.com', 'sealion']
 
 # Application definition
 
