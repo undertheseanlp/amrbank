@@ -1,18 +1,44 @@
 <div class="container">
   <h3>
-    <a href="#" editable-text="corpus.title" onaftersave="update()">{{ corpus.title }}</a>
+    <a href="#" editable-text="corpus.title" onaftersave="update()">{{
+      corpus.title }}</a>
     <small>
-    <a href="#" editable-text="corpus.description" e-style="width:600px" onaftersave="update()"> {{ corpus.description }}</a>
+      <a href="#" editable-text="corpus.description" e-style="width:600px"
+         onaftersave="update()"> {{ corpus.description }}</a>
     </small>
+    <div class="pull-right">
+      <a type="button" class="btn btn-primary btn-success btn-xs"
+         ui-sref="newDocument({corpusId: corpus.id})">New Document
+      </a>
+    </div>
   </h3>
   <br/>
 
   <h4>
     Documents
-    <div class="pull-right">
-      <a type="button" class="btn btn-primary btn-success btn-xs"
-              ui-sref="newDocument({corpusId: corpus.id})">New Document
+    <div class="pull-right" style="font-size:14px;">
+      Status:
+      <a href="#" editable-select="params.status"
+         e-ng-options="s.value as s.text for s in statuses">
+        {{ showStatus() }}
       </a>
+      <span ng-show="params.status">
+        <a style="color:red; cursor:pointer"
+           ng-click="params.status = null">[x]</a>
+      </span>
+      &nbsp;
+      Quality:
+      <a href="#" editable-select="params.quality"
+         e-ng-options="s.value as s.text for s in qualities">
+        {{ showQuality() }}
+      </a>
+      <span ng-show="params.quality">
+        <a style="color:red; cursor:pointer"
+           ng-click="params.quality = null">[x]</a>
+      </span>
+      &nbsp;
+      <button class="btn btn-xs btn-primary" ng-click="filterChanged()">Filter
+      </button>
     </div>
   </h4>
   <table class="table table-condensed table-hover">
@@ -25,7 +51,8 @@
     </tr>
     </thead>
     <tbody>
-    <tr ng-repeat="doc in documents" ui-sref="detailDocument({id: doc.id})" style="cursor:pointer">
+    <tr ng-repeat="doc in documents" ui-sref="detailDocument({id: doc.id})"
+        style="cursor:pointer">
       <th><a ui-sref="detailDocument({id: doc.id})">{{ doc.id }}</a></th>
       <td>{{ doc.text }}</td>
       <td>{{ doc.status }}</td>
@@ -33,6 +60,12 @@
     </tr>
     </tbody>
   </table>
+  <div class="col-xs-12 text-center">
+    <ul uib-pagination total-items="totalItems" items-per-page="itemsPerPage"
+        ng-model="currentPage"
+        ng-change="pageChanged()" boundary-link-numbers="true"
+        max-size="5"></ul>
+  </div>
   <h3>
     <hr/>
     <div class="pull-right">

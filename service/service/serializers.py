@@ -10,7 +10,7 @@ class DocumentSerializer(serializers.ModelSerializer):
 
 
 class CorpusSerializer(serializers.ModelSerializer):
-    documents = DocumentSerializer(many=True, read_only=True)
+    # documents = DocumentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Corpus

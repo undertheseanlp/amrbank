@@ -12,7 +12,7 @@ app.controller("ListAMRCtrl", function ($scope, Document, STATUSES, QUALITIES, $
     if($scope.quality != "ALL"){
         query["quality"] = $scope.quality;
     }
-    Document.query(query, function(data){
+    Document.query(query).then(function(data){
         $scope.docs = data;
     });
 

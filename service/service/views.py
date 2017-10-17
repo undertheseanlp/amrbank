@@ -14,7 +14,7 @@ class DocumentViewSet(viewsets.ModelViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer
     filter_backends = (django_filters.rest_framework.DjangoFilterBackend,)
-    filter_fields = ('status', 'quality')
+    filter_fields = ('status', 'quality', 'corpus')
 
 
 class CorpusViewSet(viewsets.ModelViewSet):

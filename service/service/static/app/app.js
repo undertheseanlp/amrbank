@@ -17,62 +17,41 @@ app.constant("SERVICE_URL", "http://localhost:8000/api/");
 
 app.constant("STATUSES", [
     {
-        "label": "New",
+        "text": "New",
         "value": "NEW"
     },
     {
-        "label": "Annotating",
+        "text": "Annotating",
         "value": "ANNOTATING"
     },
     {
-        "label": "Annotated",
+        "text": "Annotated",
         "value": "ANNOTATED"
     },
     {
-        "label": "Reviewing",
+        "text": "Reviewing",
         "value": "REVIEWING"
     },
     {
-        "label": "Reviewed",
+        "text": "Reviewed",
         "value": "REVIEWED"
     }
 ]);
 
 app.constant("QUALITIES", [
     {
-        "label": "Poor",
+        "text": "Poor",
         "value": "POOR"
     },
     {
-        "label": "Acceptable",
+        "text": "Acceptable",
         "value": "ACCEPTABLE"
     },
     {
-        "label": "Perfect!",
+        "text": "Perfect!",
         "value": "PERFECT"
     }
 ]);
-
-app.config(function ($resourceProvider) {
-    $resourceProvider.defaults.stripTrailingSlashes = false;
-});
-
-app.factory('Document', function ($resource) {
-    return $resource('/api/documents/:id/', {
-        'filter': '@filter'
-    }, {
-        'update': {method: 'PUT'}
-    })
-});
-
-app.factory('Corpus', function ($resource) {
-    return $resource('/api/corpora/:id/', {
-        'filter': '@filter'
-    }, {
-        'update': {method: 'PUT'}
-    })
-});
-
 
 app.directive( "mwConfirmClick", [
   function( ) {

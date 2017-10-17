@@ -1,61 +1,59 @@
-app.controller("DetailCorpusCtrl", function ($scope, $stateParams, Corpus, $state, STATUSES, QUALITIES) {
-
-    function syncAMR(raw) {
-        window.amr = textToTree(raw);
-        $scope.doc.amr = treeToText(window.amr, true);
-        makeAMRListView(window.amr);
-        draw(window.amr);
-    };
-    $scope.STATUSES = STATUSES;
-
-    $scope.QUALITIES = QUALITIES;
-
+app.controller("DetailCorpusCtrl", function ($scope, $stateParams, Corpus, $state, STATUSES, QUALITIES, Document, Params, $filter) {
     $scope.id = $stateParams.id;
+
+    var params = JSON.parse(JSON.stringify($stateParams));
+    params["corpus"] = params["id"];
+    $scope.params = Params(params, {
+        "offset": 0,
+        "limit": 10,
+        "corpus": 1,
+        "status": null,
+        "quality": null
+    });
+    $scope.statuses = STATUSES;
+
+    $scope.showStatus = function () {
+        var selected = $filter('filter')($scope.statuses,
+            {value: $scope.params.status});
+        return ($scope.params.status && selected.length) ? selected[0].text : 'All';
+    };
+    $scope.quality = null;
+    $scope.qualities = QUALITIES;
+
+    $scope.showQuality = function () {
+        var selected = $filter('filter')($scope.qualities,
+            {value: $scope.params.quality});
+        return ($scope.params.quality && selected.length) ? selected[0].text : 'All';
+    };
     Corpus.get({id: $scope.id}, function (corpus) {
         $scope.corpus = corpus;
-        $scope.documents = corpus["documents"];
+    });
+    Document.query($scope.params).then(function (documents) {
+        $scope.documents = documents;
+    });
+    Document.pagination($scope.params).then(function (result) {
+        $scope.totalItems = result["totalItems"];
+        $scope.itemsPerPage = result["itemsPerPage"];
+        $scope.currentPage = result["currentPage"];
     });
 
-    $scope.hideMessages = function () {
-        $scope.MESSAGES = {
-            "SYNTAX_ERROR": false,
-            "LOADING": false,
-            "CREATE_SUCCESS": false
-        };
-    };
-
-    $scope.hideMessages();
-
-    $scope.update = function(){
+    $scope.update = function () {
         return Corpus.update({id: $scope.id}, $scope.corpus);
     };
 
-    $scope.save = function (createNew) {
-        try {
-            $scope.hideMessages();
-            $scope.LOADING = true;
-            syncAMR($scope.doc.amr);
-            var action = Corpus.update({id: $scope.id}, $scope.doc);
-            action.$promise.then(function () {
-                $scope.MESSAGES.CREATE_SUCCESS = true;
-                $scope.LOADING = false;
-                if(createNew){
-                    $state.go('amrNew');
-                }
-                setTimeout(function(){
-                    $scope.MESSAGES.CREATE_SUCCESS = false;
-                    $scope.$apply();
-                }, 2000);
-            });
-        } catch (e) {
-            $scope.MESSAGES.SYNTAX_ERROR = true;
-            $scope.LOADING = false;
-        }
+    $scope.delete = function () {
+        Corpus.delete({id: $scope.id}).$promise.then(function () {
+            $state.go('listCorpus');
+        })
     };
 
-    $scope.delete = function(){
-      Corpus.delete({id: $scope.id}).$promise.then(function(){
-          $state.go('listCorpus');
-      })
+    $scope.pageChanged = function () {
+        $scope.params["offset"] = $scope.params["limit"] * ($scope.currentPage - 1);
+        $state.go(".", $scope.params);
+    };
+
+    $scope.filterChanged = function(){
+        $state.go(".", $scope.params);
     }
-});
+})
+;
