@@ -41,9 +41,9 @@ app.controller("DetailCorpusCtrl", function ($scope, $stateParams, Corpus, $stat
         return Corpus.update({id: $scope.id}, $scope.corpus);
     };
 
-    $scope.delete = function () {
-        Corpus.delete({id: $scope.id}).$promise.then(function () {
-            $state.go('listCorpus');
+    $scope.deleteDocument = function (id) {
+        Document.delete({id: id}).$promise.then(function () {
+            $state.reload();
         })
     };
 

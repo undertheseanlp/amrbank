@@ -54,15 +54,24 @@
     <th>Text</th>
     <th>Status</th>
     <th>Quality</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
-  <tr ng-repeat="doc in documents" ui-sref="detailDocument({id: doc.id})"
+  <tr ng-repeat="doc in documents"
       style="cursor:pointer">
-    <th><a ui-sref="detailDocument({id: doc.id})">{{ doc.id }}</a></th>
-    <td>{{ doc.text | limitTo:120 }}</td>
-    <td>{{ doc.status }}</td>
-    <td>{{ doc.quality }}</td>
+    <th ui-sref="detailDocument({id: doc.id})"><a >{{ doc.id }}</a></th>
+    <td ui-sref="detailDocument({id: doc.id})">{{ doc.text | limitTo:120 }}</td>
+    <td ui-sref="detailDocument({id: doc.id})">{{ doc.status }}</td>
+    <td ui-sref="detailDocument({id: doc.id})">{{ doc.quality }}</td>
+    <td style="cursor:default; width:40px">
+      <button class="btn btn-danger btn-xs"
+              mw-confirm-click="deleteDocument(doc.id)"
+              mw-confirm-click-message="Are you sure?">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        Delete
+      </button>
+    </td>
   </tr>
   </tbody>
 </table>

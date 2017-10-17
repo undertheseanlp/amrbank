@@ -46,6 +46,7 @@
     <th>Text</th>
     <th>Status</th>
     <th>Quality</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
@@ -54,6 +55,14 @@
     <td>{{ doc.text }}</td>
     <td>{{ doc.status }}</td>
     <td>{{ doc.quality }}</td>
+    <td style="cursor:default">
+      <button class="btn btn-danger btn-xs"
+              mw-confirm-click="delete(doc.id)"
+              mw-confirm-click-message="Are you sure?">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        Delete
+      </button>
+    </td>
   </tr>
   </tbody>
 </table>
