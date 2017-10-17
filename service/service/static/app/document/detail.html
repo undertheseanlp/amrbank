@@ -1,118 +1,122 @@
-<div class="container">
-  <h3>
-    <ol class="breadcrumb" style="float:left; font-size: 16px">
-      <li><a ui-sref="detailCorpus({id: corpus.id})">{{ corpus.title }}</a></li>
-      <li class="active">{{ doc.id }}</li>
-    </ol>
-    <!-- messages -->
-    <button ng-show="MESSAGES.SYNTAX_ERROR" type="button"
-            class="btn btn-danger btn-xs disabled">AMR Syntax Error
-    </button>
-    <button ng-show="MESSAGES.CREATE_SUCCESS" type="button"
-            class="btn btn-success btn-xs disabled">Document is
-      saved successfully.
-    </button>
-    <div class="loader-xs" ng-show="MESSAGES.LOADING"></div>
-    <div class="pull-right">
-      <small>Status:</small>
-      <button
-          ng-class="{'btn btn-xs': true, 'btn-warning': doc.status == status.value}"
-          ng-click="doc.status = status.value" ng-repeat="status in STATUSES">{{
-        status.text }}
+<div class="row">
+  <div class="col-xs-12">
+    <h3>
+      <ol class="breadcrumb" style="float:left; font-size: 16px">
+        <li><a ui-sref="detailCorpus({id: corpus.id})">{{ corpus.title }}</a>
+        </li>
+        <li class="active">{{ doc.id }}</li>
+      </ol>
+      <!-- messages -->
+      <button ng-show="MESSAGES.SYNTAX_ERROR" type="button"
+              class="btn btn-danger btn-xs disabled">AMR Syntax Error
       </button>
-      <small>Quality:</small>
-      <button
-          ng-class="{'btn btn-xs': true, 'btn-warning': doc.quality == quality.value}"
-          ng-click="doc.quality = quality.value"
-          ng-repeat="quality in QUALITIES">{{ quality.text}}
+      <button ng-show="MESSAGES.CREATE_SUCCESS" type="button"
+              class="btn btn-success btn-xs disabled">Document is
+        saved successfully.
       </button>
-      <button type="button" class="btn btn-primary btn-xs" ng-click="save()">
-        Save
-      </button>
-      <!--<button type="button" class="btn btn-primary btn-success btn-xs"-->
-      <!--ng-click="save(true)">Save and Create New-->
-      <!--</button>-->
-    </div>
-  </h3>
-
-  <div class="row">
-    <div class="col-xs-12">
-      <!--<hr/>-->
-      <textarea id="text" class="form-control"
-                rows="4" ng-model="doc.text">{{ doc.text }}</textarea>
-      <br/>
-    </div>
+      <div class="loader-xs" ng-show="MESSAGES.LOADING"></div>
+      <div class="pull-right">
+        <small>Status:</small>
+        <button
+            ng-class="{'btn btn-xs': true, 'btn-warning': doc.status == status.value}"
+            ng-click="doc.status = status.value" ng-repeat="status in STATUSES">
+          {{
+          status.text }}
+        </button>
+        <small>Quality:</small>
+        <button
+            ng-class="{'btn btn-xs': true, 'btn-warning': doc.quality == quality.value}"
+            ng-click="doc.quality = quality.value"
+            ng-repeat="quality in QUALITIES">{{ quality.text}}
+        </button>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="save()">
+          Save
+        </button>
+        <!--<button type="button" class="btn btn-primary btn-success btn-xs"-->
+        <!--ng-click="save(true)">Save and Create New-->
+        <!--</button>-->
+      </div>
+    </h3>
   </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <uib-tabset active="activeJustified" justified="true" active="active">
-        <uib-tab index="2" heading="Dialog Acts">
-          <table class="table table-bordered table-hover table-condensed">
-            <tr style="font-weight: bold">
-              <td style="width:80%">Act</td>
-              <td style="width:20%"></td>
-            </tr>
-            <tr ng-repeat="act in acts">
-              {{ act }}
-              <td>
+</div>
+<hr style="margin-top: 0px"/>
+<div class="row">
+  <div class="col-xs-12">
+    <!--<hr/>-->
+    <textarea id="text" class="form-control"
+              rows="4" ng-model="doc.text">{{ doc.text }}</textarea>
+    <br/>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <uib-tabset active="activeJustified" justified="true" active="active">
+      <uib-tab index="2" heading="Dialog Acts">
+        <table class="table table-bordered table-hover table-condensed">
+          <tr style="font-weight: bold">
+            <td style="width:80%">Act</td>
+            <td style="width:20%"></td>
+          </tr>
+          <tr ng-repeat="act in acts">
+            {{ act }}
+            <td>
                 <span editable-select="act.name"
                       e-name="aspect"
                       e-form="rowform"
                       e-ng-options="c.value as c.text for c in ACTS">
                   {{ showAct(act) }}
                 </span>
-              </td>
-              <td style="white-space: nowrap">
-                <!-- form -->
-                <form editable-form name="rowform"
-                      ng-show="rowform.$visible"
-                      class="form-buttons form-inline"
-                      shown="inserted == act">
-                  <button type="submit" ng-disabled="rowform.$waiting"
-                          class="btn btn-sm btn-warning">
-                    Update
-                  </button>
-                  <button type="button" ng-disabled="rowform.$waiting"
-                          ng-click="rowform.$cancel()"
-                          class="btn btn-sm btn-default">
-                    Cancel
-                  </button>
-                </form>
-                <div class="buttons" ng-show="!rowform.$visible">
-                  <button type="button"
-                          class="btn btn-sm btn-primary btn-warning"
-                          ng-click="rowform.$show()">Edit
-                  </button>
-                  <button type="button" class="btn btn-sm btn-danger"
-                          ng-click="removeAct($index)">Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </table>
-          <button type="button" class="btn btn-default"
-                  ng-click="addAct()">
-            <span class="fa fa-plus"></span> New Act
-          </button>
-        </uib-tab>
-         <uib-tab index="1" heading="Categories">
-          <div ng-include
-               src="'./static/app/document/edit.category.html'"></div>
-        </uib-tab>
-        <uib-tab index="0" heading="Aspect Sentiment Analysis">
-          <div ng-include
-               src="'./static/app/document/edit.sentiment.html'"></div>
-        </uib-tab>
-      </uib-tabset>
-    </div>
+            </td>
+            <td style="white-space: nowrap">
+              <!-- form -->
+              <form editable-form name="rowform"
+                    ng-show="rowform.$visible"
+                    class="form-buttons form-inline"
+                    shown="inserted == act">
+                <button type="submit" ng-disabled="rowform.$waiting"
+                        class="btn btn-sm btn-warning">
+                  Update
+                </button>
+                <button type="button" ng-disabled="rowform.$waiting"
+                        ng-click="rowform.$cancel()"
+                        class="btn btn-sm btn-default">
+                  Cancel
+                </button>
+              </form>
+              <div class="buttons" ng-show="!rowform.$visible">
+                <button type="button"
+                        class="btn btn-sm btn-primary btn-warning"
+                        ng-click="rowform.$show()">Edit
+                </button>
+                <button type="button" class="btn btn-sm btn-danger"
+                        ng-click="removeAct($index)">Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+        <button type="button" class="btn btn-default"
+                ng-click="addAct()">
+          <span class="fa fa-plus"></span> New Act
+        </button>
+      </uib-tab>
+      <uib-tab index="1" heading="Categories">
+        <div ng-include
+             src="'./static/app/document/edit.category.html'"></div>
+      </uib-tab>
+      <uib-tab index="0" heading="Aspect Sentiment Analysis">
+        <div ng-include
+             src="'./static/app/document/edit.sentiment.html'"></div>
+      </uib-tab>
+    </uib-tabset>
   </div>
-  <h3>
-    <hr/>
-    <div class="pull-right">
-      <button type="button" class="btn btn-primary btn-danger btn-sm"
-              mw-confirm-click="delete()"
-              mw-confirm-click-message="Are you sure?">Delete Document
-      </button>
-    </div>
-  </h3>
 </div>
+<h3>
+  <hr/>
+  <div class="pull-right">
+    <button type="button" class="btn btn-primary btn-danger btn-sm"
+            mw-confirm-click="delete()"
+            mw-confirm-click-message="Are you sure?">Delete Document
+    </button>
+  </div>
+</h3>

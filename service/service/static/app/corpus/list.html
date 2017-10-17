@@ -1,23 +1,38 @@
-<h3>
-  Corpora
-  <div class="pull-right">
-    <a class="btn btn-sm btn-success" ui-sref="newCorpus">New Corpus</a>
+<div class="row">
+  <div class="col-xs-12">
+    <h3>
+      <ol class="breadcrumb" style="float:left; font-size: 16px">
+        <li><a href="#">Sea Lion</a></li>
+      </ol>
+      <div class="pull-right">
+        <a class="btn btn-sm btn-success" ui-sref="newCorpus">New Corpus</a>
+      </div>
+    </h3>
   </div>
-</h3>
-<hr/>
+</div>
+<hr style="margin-top: 0px"/>
 <table class="table table-condensed table-hover">
   <thead>
   <tr>
     <th>#</th>
     <th>Title</th>
     <th>Description</th>
+    <th></th>
   </tr>
   </thead>
   <tbody>
-  <tr ng-repeat="corpus in corpora" ui-sref="detailCorpus({id: corpus.id})" style="cursor:pointer">
+  <tr ng-repeat="corpus in corpora" style="cursor:pointer">
     <th><a ui-sref="detailCorpus({id: corpus.id})">{{ corpus.id }}</a></th>
-    <td>{{ corpus.title }}</td>
-    <td>{{ corpus.description }}</td>
+    <td ui-sref="detailCorpus({id: corpus.id})">{{ corpus.title }}</td>
+    <td ui-sref="detailCorpus({id: corpus.id})">{{ corpus.description }}</td>
+    <td style="cursor:default">
+      <button class="btn btn-danger btn-xs"
+              mw-confirm-click="delete(corpus.id)"
+              mw-confirm-click-message="Are you sure?">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        Delete
+      </button>
+    </td>
   </tr>
   </tbody>
 </table>

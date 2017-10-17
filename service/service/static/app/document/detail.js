@@ -24,6 +24,7 @@ app.controller("DetailAMRCtrl", function ($scope, $stateParams, Corpus, Document
         {value: "SAVING", text: 'SAVING'},
         {value: "SECURITY", text: 'SECURITY'},
         {value: "TRADEMARK", text: 'TRADEMARK'},
+        {value: "DISCOUNT", text: 'DISCOUNT'}
     ];
 
     $scope.showCategory = function (category) {
