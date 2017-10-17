@@ -11,4 +11,4 @@ headers = {
     'Accept': 'application/json'}
 r = requests.get(url, headers=headers)
 content = Text(json.dumps(r.json(), ensure_ascii=False))
-write(join("data", "20171016.json"), content)
+write(join("data", "20171017.json"), content)
